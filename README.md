@@ -40,25 +40,13 @@ def baseline_pipeline_factory():
 
 The Random Forest hyperparameters are optimized using nested cross-validation.
 
-## Baseline Parameter Grid
+## Parameter Grid
 
 ```python
 baseline_param_grid = {
     "clf__n_estimators": [100, 150, 200],
     "clf__max_depth": [3, 5],
     "clf__min_samples_split": [20, 25, 30]
-}
-```
-
-## Domain Adaptation Parameter Grid
-
-The same search space is used for the domain adaptation methods.
-
-```python
-sa_param_grid = {
-    "n_estimators": [100, 150, 200],
-    "max_depth": [3, 5],
-    "min_samples_split": [20, 25, 30]
 }
 ```
 
@@ -104,7 +92,7 @@ The pipeline performs:
 * Subject-wise data partitioning using GroupKFold
 * Nested hyperparameter optimization
 * Random Forest model training
-* Performance evaluation on source and target domains
+* Performance evaluation on the source and target datasets
 * Storage of the best-performing model from each outer fold
 
 ---
@@ -115,15 +103,14 @@ This repository includes:
 
 * Random Forest baseline classifier
 * Nested subject-wise GroupKFold cross-validation
-* Hyperparameter optimization
-* Domain adaptation methods
+* Hyperparameter optimization using Grid Search
 * Performance evaluation on source and target datasets
 
 ---
 
 # Requirements
 
-Main Python packages:
+The project requires the following Python packages:
 
 * Python ≥ 3.10
 * NumPy
@@ -151,9 +138,9 @@ To reproduce the experiments:
 4. Configure the parameter grid.
 5. Execute `nested_grouped_training_pipeline()`.
 
-The pipeline automatically performs nested cross-validation, model selection, and performance evaluation.
+The pipeline automatically performs nested cross-validation, hyperparameter optimization, model training, and performance evaluation.
 
-Outputs include:
+The outputs include:
 
 * Best model for each outer fold
 * Selected hyperparameters
